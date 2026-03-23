@@ -1,2 +1,6 @@
 # harpa-mcp-raycast
-mcp by sean guillermo
+mcp by Sean G
+
+---
+
+Made with 💛 by Sean G
