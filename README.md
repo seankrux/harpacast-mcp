@@ -1,7 +1,228 @@
+<div align="center">
+
 # HarpaCast MCP
 
-Model Context Protocol server — coming soon.
+**Model Context Protocol server for HARPA AI and Raycast**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![MCP](https://img.shields.io/badge/MCP-1.0-8B5CF6)](https://modelcontextprotocol.io/)
+
+</div>
 
 ---
 
-Made with 💛 by Sean G
+HarpaCast MCP bridges [HARPA AI](https://harpa.ai/) with any MCP-compatible client, exposing browser automation, web scraping, and AI-powered analysis as first-class tools in Raycast, Claude Desktop, Cursor, and beyond.
+
+## Features
+
+| Tool | Description |
+|---|---|
+| `scrape_page` | Extract full-page content or targeted elements via CSS / XPath selectors |
+| `search_web` | Perform web searches through HARPA's search engine |
+| `run_ai_command` | Execute built-in HARPA commands -- summarize, extract, translate, and more |
+| `run_ai_prompt` | Run custom AI prompts with optional web-page context |
+| `scrape_multiple_elements` | Batch-extract structured data from any page |
+
+## Prerequisites
+
+| Requirement | Version |
+|---|---|
+| Node.js | >= 18 |
+| HARPA API key | [Get one here](https://harpa.ai/) |
+| MCP client | Raycast, Claude Desktop, Cursor, or any MCP-compatible host |
+
+## Quick Start
+
+### 1. Clone and build
+
+```bash
+git clone https://github.com/seankrux/harpacast-mcp.git
+cd harpacast-mcp
+npm install
+npm run build
+```
+
+### 2. Locate the server binary
+
+```bash
+echo "$(pwd)/build/index.js"
+```
+
+Copy the output path for the next step.
+
+### 3. Configure your MCP client
+
+<details>
+<summary><strong>Raycast</strong></summary>
+
+Open **Raycast Settings** `Cmd + ,` ▸ **Extensions** ▸ **MCP Servers** ▸ **Add Server**, then paste:
+
+```json
+{
+  "mcpServers": {
+    "harpa": {
+      "command": "node",
+      "args": ["/absolute/path/to/harpacast-mcp/build/index.js"],
+      "env": {
+        "HARPA_API_KEY": "your-harpa-api-key"
+      }
+    }
+  }
+}
+```
+
+Restart Raycast after saving.
+</details>
+
+<details>
+<summary><strong>Claude Desktop</strong></summary>
+
+Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "harpa": {
+      "command": "node",
+      "args": ["/absolute/path/to/harpacast-mcp/build/index.js"],
+      "env": {
+        "HARPA_API_KEY": "your-harpa-api-key"
+      }
+    }
+  }
+}
+```
+
+Restart Claude Desktop after saving.
+</details>
+
+<details>
+<summary><strong>Cursor / Other MCP hosts</strong></summary>
+
+Use the same JSON structure above, adapting it to your client's MCP configuration format. The server communicates over **stdio**.
+</details>
+
+## Tool Reference
+
+### `scrape_page`
+
+Extract content from a web page. Supports full-page scraping or targeted element extraction.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | `string` | Yes | Target URL |
+| `selectors` | `array` | No | CSS/XPath selectors with labels |
+| `timeout` | `number` | No | Timeout in ms (default: 30 000) |
+
+```json
+{
+  "url": "https://example.com",
+  "selectors": [
+    { "selector": "h1", "label": "title", "take": "text" },
+    { "selector": ".content", "label": "body", "take": "html" }
+  ]
+}
+```
+
+### `search_web`
+
+Perform a web search and receive structured results.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `query` | `string` | Yes | Search query |
+| `timeout` | `number` | No | Timeout in ms (default: 30 000) |
+
+### `run_ai_command`
+
+Execute a predefined HARPA AI command on a page or with custom inputs.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `command_name` | `string` | Yes | Command identifier (e.g. `summarize-page`) |
+| `url` | `string` | No | Target URL |
+| `inputs` | `string[]` | No | Additional input parameters |
+| `connection` | `string` | No | AI model connection override |
+| `timeout` | `number` | No | Timeout in ms (default: 60 000) |
+
+### `run_ai_prompt`
+
+Run a custom AI prompt with optional web-page context.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `prompt` | `string` | Yes | The prompt to execute |
+| `url` | `string` | No | URL for context |
+| `connection` | `string` | No | AI model connection override |
+| `timeout` | `number` | No | Timeout in ms (default: 60 000) |
+
+### `scrape_multiple_elements`
+
+Batch-extract multiple elements from a single page.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | `string` | Yes | Target URL |
+| `elements` | `array` | Yes | Elements to extract (selector, label, take, at) |
+| `timeout` | `number` | No | Timeout in ms (default: 30 000) |
+
+```json
+{
+  "url": "https://news.ycombinator.com",
+  "elements": [
+    { "selector": ".titleline > a", "label": "titles", "at": "all" },
+    { "selector": ".score", "label": "scores", "at": "all" }
+  ]
+}
+```
+
+## Verification
+
+Test the server locally before connecting a client:
+
+```bash
+export HARPA_API_KEY="your-harpa-api-key"
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | node build/index.js
+```
+
+A successful response returns a JSON object listing all five tools.
+
+## Troubleshooting
+
+| Symptom | Resolution |
+|---|---|
+| `command not found: node` | Install Node.js >= 18 from [nodejs.org](https://nodejs.org/) |
+| `Cannot find module` | Run `npm install && npm run build` |
+| `HARPA_API_KEY environment variable is required` | Ensure the `env` block is present in your MCP client config |
+| `HARPA API error: 401` | Regenerate your API key in the HARPA Chrome extension ▸ Automate tab |
+| Path not recognized by client | Use an **absolute** path (e.g. `/Users/you/harpacast-mcp/build/index.js`) |
+
+## Project Structure
+
+```
+harpacast-mcp/
+  src/
+    index.ts          -- MCP server entry point
+  build/              -- Compiled output (generated)
+  package.json
+  tsconfig.json
+  .gitignore
+```
+
+## Resources
+
+▸ [HARPA GRID API Reference](https://harpa.ai/grid/grid-rest-api-reference)
+▸ [Model Context Protocol Specification](https://modelcontextprotocol.io/)
+▸ [Raycast MCP Documentation](https://developers.raycast.com/)
+
+## License
+
+[MIT](LICENSE)
+
+---
+
+<div align="center">
+Made with 💛 by <strong>Sean G</strong>
+</div>

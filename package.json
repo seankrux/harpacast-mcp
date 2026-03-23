@@ -1,0 +1,47 @@
+{
+  "name": "harpacast-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for HARPA AI and Raycast — browser automation, web scraping, and AI-powered web interactions",
+  "main": "build/index.js",
+  "bin": {
+    "harpacast-mcp": "build/index.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node build/index.js",
+    "prepare": "npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "harpa",
+    "raycast",
+    "browser-automation",
+    "web-scraping",
+    "ai",
+    "automation"
+  ],
+  "author": "Sean G",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seankrux/harpacast-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seankrux/harpacast-mcp/issues"
+  },
+  "homepage": "https://github.com/seankrux/harpacast-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
