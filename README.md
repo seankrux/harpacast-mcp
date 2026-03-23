@@ -1,5 +1,6 @@
-# harpa-mcp-raycast
-mcp by Sean G
+# HarpaCast MCP
+
+Model Context Protocol server — coming soon.
 
 ---
 
