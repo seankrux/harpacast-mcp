@@ -2,7 +2,7 @@
 
 # HarpaCast MCP
 
-**Model Context Protocol server for HARPA AI and Raycast**
+**The fastest way to bring real browser intelligence into your AI workflows**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -13,7 +13,17 @@
 
 ---
 
-HarpaCast MCP bridges [HARPA AI](https://harpa.ai/) with any MCP-compatible client, exposing browser automation, web scraping, and AI-powered analysis as first-class tools in Raycast, Claude Desktop, Cursor, and beyond.
+HarpaCast MCP bridges [HARPA AI](https://harpa.ai/) with any MCP-compatible client, exposing browser automation, web scraping, and AI-powered analysis as first-class tools in Raycast, Claude Desktop, Cursor, and beyond. Stop copy-pasting between browser tabs and AI assistants — let your AI read, search, and reason over the live web directly.
+
+## Why HarpaCast?
+
+Most AI tools are cut off from the live web. HarpaCast changes that by wiring HARPA AI's battle-tested browser engine directly into the MCP ecosystem, so any compatible client gains real browsing capability without writing a line of Playwright or Puppeteer.
+
+- **Live web, not stale training data** — scrape and search the actual internet at query time, not from a cached snapshot
+- **One integration, every client** — configure once, use from Raycast, Claude Desktop, Cursor, or any MCP host
+- **Structured extraction out of the box** — CSS and XPath selectors return clean, labeled data instead of raw HTML soup
+- **HARPA's AI commands, exposed as tools** — summarize, translate, extract, and more without leaving your AI workflow
+- **No browser automation boilerplate** — no Selenium setup, no headless Chrome config, no proxy wrangling
 
 ## Features
 
@@ -210,6 +220,44 @@ harpacast-mcp/
   tsconfig.json
   .gitignore
 ```
+
+## Contributing
+
+Contributions are welcome. Here is the recommended workflow:
+
+1. **Fork** the repository and create a feature branch: `feat/your-feature-name`
+2. **Install dependencies** with `npm install` and confirm `npm run build` passes before making changes
+3. **Implement** your change, keeping commits focused and using [Conventional Commits](https://www.conventionalcommits.org/) style (`feat:`, `fix:`, `docs:`, etc.)
+4. **Test** your change locally using the verification command above
+5. **Open a pull request** against `main` with a clear description of what changed and why
+
+### Good first contributions
+
+- Additional MCP tool wrappers for HARPA commands not yet exposed
+- Improved error messages and validation
+- Example prompts and usage recipes in the docs
+- Automated tests using the MCP test harness
+
+Please open an issue before starting significant work so we can discuss the approach first.
+
+## Roadmap
+
+> This section tracks planned improvements. Items are not guaranteed or time-bound.
+
+- [ ] `navigate_and_interact` tool for click/form-fill automation
+- [ ] Streaming support for long-running AI commands
+- [ ] `npx`-based zero-install startup (no clone required)
+- [ ] Published npm package for easier version management
+- [ ] Configuration schema validation with helpful error output
+- [ ] Example gallery: research workflows, price monitors, content pipelines
+
+Have an idea? [Open an issue](https://github.com/seankrux/harpacast-mcp/issues) to discuss it.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a full history of releases and changes.
+
+> No formal releases yet — the project is in active early development. Breaking changes will be noted in commit messages until v1.0.
 
 ## Resources
 
