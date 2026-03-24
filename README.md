@@ -1,12 +1,14 @@
 <div align="center">
 
-# HarpaCast MCP
+  <h1>HarpaCast MCP</h1>
 
-**The fastest way to bring real browser intelligence into your AI workflows**
+  <p><strong>The fastest way to bring real browser intelligence into your AI workflows</strong></p>
 
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![MCP](https://img.shields.io/badge/MCP-1.0-8B5CF6)](https://modelcontextprotocol.io/)
+  <p>
+    <img src="https://img.shields.io/badge/Node.js-%3E%3D18-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+    <img src="https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/MCP-1.0-8B5CF6?style=for-the-badge" alt="MCP" />
+  </p>
 
 </div>
 
@@ -14,33 +16,45 @@
 
 HarpaCast MCP bridges [HARPA AI](https://harpa.ai/) with any MCP-compatible client, exposing browser automation, web scraping, and AI-powered analysis as first-class tools in Raycast, Claude Desktop, Cursor, and beyond. Stop copy-pasting between browser tabs and AI assistants — let your AI read, search, and reason over the live web directly.
 
+<br>
+
 ## Why HarpaCast?
 
 Most AI tools are cut off from the live web. HarpaCast changes that by wiring HARPA AI's battle-tested browser engine directly into the MCP ecosystem, so any compatible client gains real browsing capability without writing a line of Playwright or Puppeteer.
 
-- **Live web, not stale training data** — scrape and search the actual internet at query time, not from a cached snapshot
-- **One integration, every client** — configure once, use from Raycast, Claude Desktop, Cursor, or any MCP host
-- **Structured extraction out of the box** — CSS and XPath selectors return clean, labeled data instead of raw HTML soup
-- **HARPA's AI commands, exposed as tools** — summarize, translate, extract, and more without leaving your AI workflow
-- **No browser automation boilerplate** — no Selenium setup, no headless Chrome config, no proxy wrangling
+> **Live web, not stale training data** — Scrape and search the actual internet at query time, not from a cached snapshot
+
+> **One integration, every client** — Configure once, use from Raycast, Claude Desktop, Cursor, or any MCP host
+
+> **Structured extraction out of the box** — CSS and XPath selectors return clean, labeled data instead of raw HTML soup
+
+> **HARPA's AI commands, exposed as tools** — Summarize, translate, extract, and more without leaving your AI workflow
+
+> **No browser automation boilerplate** — No Selenium setup, no headless Chrome config, no proxy wrangling
+
+<br>
 
 ## Features
 
 | Tool | Description |
-|---|---|
+|------|-------------|
 | `scrape_page` | Extract full-page content or targeted elements via CSS / XPath selectors |
 | `search_web` | Perform web searches through HARPA's search engine |
-| `run_ai_command` | Execute built-in HARPA commands -- summarize, extract, translate, and more |
+| `run_ai_command` | Execute built-in HARPA commands — summarize, extract, translate, and more |
 | `run_ai_prompt` | Run custom AI prompts with optional web-page context |
 | `scrape_multiple_elements` | Batch-extract structured data from any page |
+
+<br>
 
 ## Prerequisites
 
 | Requirement | Version |
-|---|---|
+|-------------|---------|
 | Node.js | >= 18 |
 | HARPA API key | [Get one here](https://harpa.ai/) |
 | MCP client | Raycast, Claude Desktop, Cursor, or any MCP-compatible host |
+
+<br>
 
 ## Quick Start
 
@@ -113,6 +127,8 @@ Restart Claude Desktop after saving.
 Use the same JSON structure above, adapting it to your client's MCP configuration format. The server communicates over **stdio**.
 </details>
 
+<br>
+
 ## Tool Reference
 
 ### `scrape_page`
@@ -120,7 +136,7 @@ Use the same JSON structure above, adapting it to your client's MCP configuratio
 Extract content from a web page. Supports full-page scraping or targeted element extraction.
 
 | Parameter | Type | Required | Description |
-|---|---|---|---|
+|-----------|------|----------|-------------|
 | `url` | `string` | Yes | Target URL |
 | `selectors` | `array` | No | CSS/XPath selectors with labels |
 | `timeout` | `number` | No | Timeout in ms (default: 30 000) |
@@ -140,7 +156,7 @@ Extract content from a web page. Supports full-page scraping or targeted element
 Perform a web search and receive structured results.
 
 | Parameter | Type | Required | Description |
-|---|---|---|---|
+|-----------|------|----------|-------------|
 | `query` | `string` | Yes | Search query |
 | `timeout` | `number` | No | Timeout in ms (default: 30 000) |
 
@@ -149,7 +165,7 @@ Perform a web search and receive structured results.
 Execute a predefined HARPA AI command on a page or with custom inputs.
 
 | Parameter | Type | Required | Description |
-|---|---|---|---|
+|-----------|------|----------|-------------|
 | `command_name` | `string` | Yes | Command identifier (e.g. `summarize-page`) |
 | `url` | `string` | No | Target URL |
 | `inputs` | `string[]` | No | Additional input parameters |
@@ -161,7 +177,7 @@ Execute a predefined HARPA AI command on a page or with custom inputs.
 Run a custom AI prompt with optional web-page context.
 
 | Parameter | Type | Required | Description |
-|---|---|---|---|
+|-----------|------|----------|-------------|
 | `prompt` | `string` | Yes | The prompt to execute |
 | `url` | `string` | No | URL for context |
 | `connection` | `string` | No | AI model connection override |
@@ -172,7 +188,7 @@ Run a custom AI prompt with optional web-page context.
 Batch-extract multiple elements from a single page.
 
 | Parameter | Type | Required | Description |
-|---|---|---|---|
+|-----------|------|----------|-------------|
 | `url` | `string` | Yes | Target URL |
 | `elements` | `array` | Yes | Elements to extract (selector, label, take, at) |
 | `timeout` | `number` | No | Timeout in ms (default: 30 000) |
@@ -187,6 +203,8 @@ Batch-extract multiple elements from a single page.
 }
 ```
 
+<br>
+
 ## Verification
 
 Test the server locally before connecting a client:
@@ -198,15 +216,19 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | node build/index.js
 
 A successful response returns a JSON object listing all five tools.
 
+<br>
+
 ## Troubleshooting
 
 | Symptom | Resolution |
-|---|---|
+|---------|------------|
 | `command not found: node` | Install Node.js >= 18 from [nodejs.org](https://nodejs.org/) |
 | `Cannot find module` | Run `npm install && npm run build` |
 | `HARPA_API_KEY environment variable is required` | Ensure the `env` block is present in your MCP client config |
 | `HARPA API error: 401` | Regenerate your API key in the HARPA Chrome extension ▸ Automate tab |
 | Path not recognized by client | Use an **absolute** path (e.g. `/Users/you/harpacast-mcp/build/index.js`) |
+
+<br>
 
 ## Project Structure
 
@@ -219,6 +241,8 @@ harpacast-mcp/
   tsconfig.json
   .gitignore
 ```
+
+<br>
 
 ## Contributing
 
@@ -239,9 +263,11 @@ Contributions are welcome. Here is the recommended workflow:
 
 Please open an issue before starting significant work so we can discuss the approach first.
 
+<br>
+
 ## Roadmap
 
-> This section tracks planned improvements. Items are not guaranteed or time-bound.
+> Items are not guaranteed or time-bound.
 
 - [ ] `navigate_and_interact` tool for click/form-fill automation
 - [ ] Streaming support for long-running AI commands
@@ -252,16 +278,26 @@ Please open an issue before starting significant work so we can discuss the appr
 
 Have an idea? [Open an issue](https://github.com/seankrux/harpacast-mcp/issues) to discuss it.
 
+<br>
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for a full history of releases and changes.
 
 > No formal releases yet — the project is in active early development. Breaking changes will be noted in commit messages until v1.0.
 
+<br>
+
 ## Resources
 
-▸ [HARPA GRID API Reference](https://harpa.ai/grid/grid-rest-api-reference)
-▸ [Model Context Protocol Specification](https://modelcontextprotocol.io/)
-▸ [Raycast MCP Documentation](https://developers.raycast.com/)
+> [HARPA GRID API Reference](https://harpa.ai/grid/grid-rest-api-reference)
 
-<p align="center">Made with 💛 by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></p>
+> [Model Context Protocol Specification](https://modelcontextprotocol.io/)
+
+> [Raycast MCP Documentation](https://developers.raycast.com/)
+
+<br>
+
+<div align="center">
+  <sub>Built by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></sub>
+</div>
