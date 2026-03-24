@@ -4,7 +4,6 @@
 
 **The fastest way to bring real browser intelligence into your AI workflows**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![MCP](https://img.shields.io/badge/MCP-1.0-8B5CF6)](https://modelcontextprotocol.io/)
@@ -265,12 +264,4 @@ See [CHANGELOG.md](CHANGELOG.md) for a full history of releases and changes.
 ▸ [Model Context Protocol Specification](https://modelcontextprotocol.io/)
 ▸ [Raycast MCP Documentation](https://developers.raycast.com/)
 
-## License
-
-[MIT](LICENSE)
-
----
-
-<div align="center">
-Made with 💛 by <strong>Sean G</strong>
-</div>
+<p align="center">Made with 💛 by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></p>
